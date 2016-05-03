@@ -22,17 +22,25 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 =end
 
+require 'lib/photo_renamer/version'
+
 Gem::Specification.new do |s|
-  s.name = 'photorenamer'
-  s.version = '0.0.0'
+  s.name = 'photo_renamer'
+  s.version = PhotoRenamer::VERSION
   s.date = '2016-05-02'
   s.summary = "Photo Renamer"
   s.description = "A renamer for Mac OS X Photos master folder"
   s.authors = ["Markus Rudel"]
   s.email = 'markus.rudel@ruhr-uni-bochum.de'
-  s.files = ["lib/photorenamer.rb"]
+  s.files = `git ls-files -z`.split("\x0")
   s.homepage =
-      'http://rubygems.org/gems/photorenamer'
+      'http://rubygems.org/gems/photo_renamer'
   s.license = 'MIT'
   s.required_ruby_version = '>= 1.9.3'
+  s.add_dependency 'thor'
+  s.add_development_dependency "bundler", "~> 1.6"
+  s.add_development_dependency "rake"
+  s.executables = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  s.test_files = spec.files.grep(%r{^(test|spec|features)/})
+  s.require_paths = ["lib"]
 end

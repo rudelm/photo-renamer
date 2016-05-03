@@ -1,5 +1,0 @@
-#!/usr/bin/env ruby
-
-require 'photo_renamer'
-puts 'foo'
-PhotoRenamer::Cli::Application.start(ARGV)

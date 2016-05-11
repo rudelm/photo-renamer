@@ -37,7 +37,7 @@ module PhotoRenamer
         def hasImageFileExtension?(file)
           extensions = %w(cr2 jpg jpeg nef nrw dng)
           extensions.each { |extension|
-            if file.include?(extension)
+            if file.downcase.include?(extension)
               return true
             end
           }

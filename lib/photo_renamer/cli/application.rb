@@ -18,6 +18,7 @@ module PhotoRenamer
           next if File.directory? filename
           next if !hasImageFileExtension?(filename)
           puts getExifCreatedDate(getFile(filename))
+          break
         end
         # filter for image file extensions
       end
@@ -45,7 +46,7 @@ module PhotoRenamer
       # get the created date from the exif information in the picture
       def getExifCreatedDate(file)
         data = Exif::Data.new(file.path)
-        data.date_time
+        data.date_time.strftime("%F")
       end
     end
   end

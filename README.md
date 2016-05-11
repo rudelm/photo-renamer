@@ -1,6 +1,9 @@
 # What is this?
 This is a little ruby thor application which should help to rename pictures taken from Apple's iPhoto or Photo library. The pictures from this libraries are stored in a hidden folder named "masters". This folder contains the original unmodified pictures. I intend to copy the files from this folder so that their parent directory is preserved (e.g. the event or album name), but I also want to add a timestamp of the pictures creation (taken from the exif information) and maybe an additional definable text field (e.g. for adding the location).
 
+# Prerequisites
+You need to install the libexif library via brew with ``brew install libexif``
+
 # License
 MIT License
 

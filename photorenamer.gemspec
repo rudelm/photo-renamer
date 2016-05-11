@@ -1,3 +1,4 @@
+# coding: utf-8
 =begin
 MIT License
 
@@ -22,7 +23,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 =end
 
-require 'lib/photo_renamer/version'
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'photo_renamer/version'
 
 Gem::Specification.new do |s|
   s.name = 'photo_renamer'
@@ -38,9 +41,8 @@ Gem::Specification.new do |s|
   s.license = 'MIT'
   s.required_ruby_version = '>= 1.9.3'
   s.add_dependency 'thor'
+  s.add_dependency 'exif'
   s.add_development_dependency "bundler", "~> 1.6"
   s.add_development_dependency "rake"
-  s.executables = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  s.test_files = spec.files.grep(%r{^(test|spec|features)/})
   s.require_paths = ["lib"]
 end

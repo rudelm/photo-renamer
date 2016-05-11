@@ -42,6 +42,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 1.9.3'
   s.add_dependency 'thor'
   s.add_dependency 'exif'
+  s.add_dependency 'rspec'
   s.add_development_dependency "bundler", "~> 1.6"
   s.add_development_dependency "rake"
   s.require_paths = ["lib"]

@@ -3,6 +3,7 @@
 import sys, getopt, os
 import pathlib
 import time
+import argparse
 
 from PIL import Image
 from PIL.ExifTags import TAGS
@@ -12,19 +13,15 @@ def main(argv):
     inputfolder = ''
     dryrun = False
 
-    try:
-        opts, args = getopt.getopt(argv, "hi:", "infolder=")
-    except getopt.GetoptError:
-        print('photorenamer.py -i <inputfolder>')
-        sys.exit(2)
-
-    for opt, arg in opts:
-        if opt == '-h':
-            print('photorenamer.py -i <inputfolder>')
-            sys.exit()
-        elif opt in ("-i", "--infolder"):
-            inputfolder = arg
-    print('Input folder is: ', inputfolder)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-d', '--dryrun',
+                        action="store_true",
+                        help='executes a dry run without renaming')
+    parser.add_argument('-i', '--infolder',
+                        help='specifies the input folder under which images should be searched')
+    args = parser.parse_args()
+    
+    inputfolder = args.infolder
 
     with os.scandir(inputfolder) as it:
         for entry in it:

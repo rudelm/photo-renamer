@@ -11,7 +11,7 @@ from PIL.ExifTags import TAGS
 
 def main(argv):
     inputfolder = ''
-    dryrun = False
+    global dryrun
 
     parser = argparse.ArgumentParser()
     parser.add_argument('-d', '--dryrun',
@@ -22,6 +22,7 @@ def main(argv):
     args = parser.parse_args()
     
     inputfolder = args.infolder
+    dryrun = args.dryrun
 
     with os.scandir(inputfolder) as it:
         for entry in it:
@@ -42,8 +43,12 @@ def _rename_folder(filename, date):
     date_prefix = time.strftime("%Y-%m-%d - ", date)
     new_folder_name = date_prefix+current_folder_name
     new_folder_path = current_folder_parent + '/' + new_folder_name
-    print('renaming folder ' + current_folder_path + ' to ' + new_folder_path)
-    os.rename(current_folder_path, new_folder_path)
+    if (dryrun):
+        print('<<<< dryrun >>>>, changing nothing')
+        print('Tool could change folder ' + current_folder_path + ' to ' + new_folder_path)
+    else:
+        print('renaming folder ' + current_folder_path + ' to ' + new_folder_path)
+        os.rename(current_folder_path, new_folder_path)
 
 def _is_image(filename):
     image_suffixes = ['.jpg', '.dng', '.cr2', '.nef']

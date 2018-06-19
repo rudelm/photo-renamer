@@ -1,20 +1,28 @@
 # PhotoRenamer
 
 ## What is this?
-This is a little ruby thor application which should help to rename pictures taken from Apple's iPhoto or Photo library. The pictures from this libraries are stored in a hidden folder named "masters". This folder contains the original unmodified pictures. I intend to copy the files from this folder so that their parent directory is preserved (e.g. the event or album name), but I also want to add a timestamp of the pictures creation (taken from the exif information) and maybe an additional definable text field (e.g. for adding the location).
+This used to be a little ruby thor application which should help to rename pictures taken from Apple's iPhoto or Photo library. I've rewritten the tool in python3 and intend to only work on the python version. 
+
+The pictures from these libraries are stored in a hidden folder named "masters". This folder contains the original unmodified pictures. I intend to copy the files from this folder so that their parent directory is preserved (e.g. the event or album name), but I also want to add a timestamp of the pictures creation (taken from the exif information) and maybe an additional definable text field (e.g. for adding the location).
+
+The current Mac OS Photos version in High Sierra is able to export the pictures including their event names, if present. These exported files can also be used for renaming and do not require working inside the library master folder.
+
+
 
 ## Prerequisites
-You need to install the libexif library via brew with ``brew install libexif``
+You need to install python3 via brew with ``brew install python3``. Make also sure that you've installed [pipenv](https://robots.thoughtbot.com/how-to-manage-your-python-projects-with-pipenv) with ``pip3 install pipenv``.
 
 ## How to use
-During development you can execute the binary with ``bundle exec bin/photo_renamer``
+Change into the python subfolder and run ``pipenv install`` to install all requirements.
 
-The thor application will tell you of available tasks and command parameters, if necessary.
+You can enter the environment with ``pipenv shell``. In this shell you can now run the script with ``python photorenamer.py``.
+
+If you add the ``--help`` option to the script, it will explain the optional arguments.
 
 ## License
 MIT License
 
-Copyright (c) [2016] [Markus Rudel]
+Copyright (c) [2016-2018] [Markus Rudel]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

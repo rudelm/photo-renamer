@@ -28,26 +28,25 @@ def main(argv):
         for entry in it:
             if (entry.is_dir()):
                 scan_folder_for_image(entry)
-            elif (_is_image(entry.path) and entry.is_file()):
-                try:
-                    image_date = _get_image_date(entry.path)
-                    print("File: " + entry.name + " was created " + time.strftime('%Y-%m-%dT%H:%M:%SZ', image_date))
-                    _rename_folder(entry.path, image_date)
-                    break
-                except TypeError:
-                    print("Couldn't read exif information")
+            else:
+                use_file_for_renaming(entry)
+
 
 def scan_folder_for_image(folder):
     with os.scandir(folder) as it:
         for entry in it:
-            if _is_image(entry.path) and entry.is_file():
-                try:
-                    image_date = _get_image_date(entry.path)
-                    print("File: " + entry.name + " was created " + time.strftime('%Y-%m-%dT%H:%M:%SZ', image_date))
-                    _rename_folder(entry.path, image_date)
-                    break
-                except TypeError:
-                    print("Couldn't read exif information")
+            if (entry.is_file()):
+                use_file_for_renaming(entry)
+                break
+
+def use_file_for_renaming(filename):
+    if _is_image(filename.path) and filename.is_file():
+        try:
+            image_date = _get_image_date(filename.path)
+            print("File: " + filename.name + " was created " + time.strftime('%Y-%m-%dT%H:%M:%SZ', image_date))
+            _rename_folder(filename.path, image_date)
+        except TypeError:
+            print("Couldn't read exif information")
 
 def _rename_folder(filename, date):
     current_folder_path = os.path.dirname(filename)

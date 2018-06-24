@@ -12,6 +12,7 @@ from PIL.ExifTags import TAGS
 def main(argv):
     inputfolder = ''
     global dryrun
+    global verbose
 
     parser = argparse.ArgumentParser()
     parser.add_argument('-d', '--dryrun',
@@ -19,10 +20,14 @@ def main(argv):
                         help='executes a dry run without renaming')
     parser.add_argument('-i', '--infolder',
                         help='specifies the input folder under which images should be searched')
+    parser.add_argument('-v', '--verbose',
+                        action="store_true",
+                        help="enable verbose logging output")
     args = parser.parse_args()
     
     inputfolder = args.infolder
     dryrun = args.dryrun
+    verbose = args.verbose
 
     with os.scandir(inputfolder) as it:
         for entry in it:
@@ -43,7 +48,8 @@ def use_file_for_renaming(filename):
     if _is_image(filename.path) and filename.is_file():
         try:
             image_date = _get_image_date(filename.path)
-            print("File: " + filename.name + " was created " + time.strftime('%Y-%m-%dT%H:%M:%SZ', image_date))
+            if (verbose):
+                print("File: " + filename.name + " was created " + time.strftime('%Y-%m-%dT%H:%M:%SZ', image_date))
             _rename_folder(filename.path, image_date)
         except TypeError:
             print("Couldn't read exif information")

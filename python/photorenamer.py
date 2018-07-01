@@ -73,7 +73,8 @@ def _is_image(filename):
     image_suffixes = ['.jpg', '.dng', '.cr2', '.nef']
     suffix = pathlib.Path(filename).suffix
     if suffix in image_suffixes:
-        print('Found supported image type in ' + filename)
+        if (verbose):
+            print('Found supported image type in ' + filename)
         return True
     else:
         return False

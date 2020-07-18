@@ -1,4 +1,5 @@
 # PhotoRenamer
+Obsolete and unmaintained until further use aries. However, it might serve as a template for a python/ruby command line tool.
 
 ## What is this?
 This used to be a little ruby thor application which should help to rename pictures taken from Apple's iPhoto or Photo library. I've rewritten the tool in python3 and intend to only work on the python version. 
@@ -19,10 +20,14 @@ You can enter the environment with ``pipenv shell``. In this shell you can now r
 
 If you add the ``--help`` option to the script, it will explain the optional arguments.
 
+## Known issues
+* Folders with ampersands (&) make problems in the path detection - replace them with "and"
+* Error message after first file was scanned and folder renamed, as the loop tries other images as well but doesn't find the path since the folder was renamed
+
 ## License
 MIT License
 
-Copyright (c) [2016-2018] [Markus Rudel]
+Copyright (c) [2016-2020] [Markus Rudel]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

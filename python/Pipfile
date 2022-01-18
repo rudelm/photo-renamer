@@ -5,10 +5,10 @@ name = "pypi"
 
 [packages]
 pylint = "*"
-pillow = ">=6.2.2"
+pillow = ">=9.0.0"
 pathlib = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.6"
+python_version = "3"

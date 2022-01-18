@@ -1,5 +1,5 @@
 # PhotoRenamer
-Obsolete and unmaintained until further use aries. However, it might serve as a template for a python/ruby command line tool.
+Obsolete and unmaintained until further use aries. However, it might serve as a template for a python/ruby command line tool. The only updates this repo receives are for security updates.
 
 ## What is this?
 This used to be a little ruby thor application which should help to rename pictures taken from Apple's iPhoto or Photo library. I've rewritten the tool in python3 and intend to only work on the python version. 
